@@ -1,5 +1,4 @@
 import { galleryItems } from "./gallery-items.js";
-// Change code below this line
 
 const galleryImages = document.querySelector(".gallery");
 const imagesMarkup = createGalleryItemsMarkup(galleryItems);
@@ -15,9 +14,9 @@ function createGalleryItemsMarkup(images) {
     .join("");
 }
 
-galleryImages.innerHTML = imagesMarkup;
+galleryImages.innerHTML = imagesMarkup; // главное создать разметку, а только потом подключать либо
 
-var lightBox = new SimpleLightbox(".gallery .gallery__item", {
+let lightBox = new SimpleLightbox(".gallery .gallery__item", {
   captionsData: "alt",
   captionDelay: 250,
 });

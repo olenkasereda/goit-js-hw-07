@@ -10,7 +10,8 @@ galleryImages.addEventListener("click", onModalOriginalImage);
 console.log(galleryItems);
 
 function createGalleryItemsMarkup(images) {
-  return images
+  // функция для создания разметки, она должна соответсвовать
+  return images // требованиям библиотеки
     .map(({ preview, original, description }) => {
       return `
         <div class="gallery__item">
@@ -29,13 +30,16 @@ function createGalleryItemsMarkup(images) {
 }
 
 function onModalOriginalImage(e) {
+  //функция для проверки и подключению библиотеки
   const { target } = e;
   // const target = e.target;
   e.preventDefault();
   if (!target.classList.contains("gallery__image")) {
+    // усли ел-нт не имеет класс gallery__image, то выходим
     return;
   }
   const instance = basicLightbox.create(
+    // если все ок подключаем библиотеку
     `   
         <div class="modal">
        <img
@@ -47,12 +51,11 @@ function onModalOriginalImage(e) {
       `
   );
   instance.show();
-
-  galleryImages.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
+  galleryImages.addEventListener("keydown", onEscKeyPress); //выход при нажатии Escape
+  function onEscKeyPress(evt) {
+    if (evt.key === "Escape") {
       instance.close();
+      this.removeEventListener("keydown", onEscKeyPress); // снимаем слушателя событий с galleryImages при нажатии Escape
     }
-  });
-
-  //console.log("click");
+  }
 }
